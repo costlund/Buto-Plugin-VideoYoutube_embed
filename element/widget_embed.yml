@@ -1,0 +1,14 @@
+type: div
+attribute:
+  class: 'embed-responsive embed-responsive-16by9'
+innerHTML:
+  -
+    type: iframe
+    attribute:
+      title: rs:title
+      src: rs:src
+      allowfullscreen: rs:allowfullscreen
+      allow: rs:allow
+      name: rs:name
+      id: rs:id
+      class: rs:class
