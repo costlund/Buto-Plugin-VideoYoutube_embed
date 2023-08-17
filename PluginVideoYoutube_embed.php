@@ -29,16 +29,16 @@ class PluginVideoYoutube_embed{
        * Empty.
        */
       throw new Exception(__CLASS__.' says: Param value is empty!');
-    }elseif(strstr($value, '<iframe')){
+    }elseif(wfPhpfunc::strstr($value, '<iframe')){
       /**
        * Embed html.
        */
        echo $value;
-    }elseif(strstr($value, 'youtu.be')){
+    }elseif(wfPhpfunc::strstr($value, 'youtu.be')){
       /**
        * Link.
        */
-      $id = substr($value, strpos($value, 'youtu.be')+9);
+      $id = wfPhpfunc::substr($value, strpos($value, 'youtu.be')+9);
       $element = $this->get_element($id);
       wfDocument::renderElement(array($element->get()));
     }else{
