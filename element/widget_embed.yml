@@ -1,6 +1,6 @@
 type: div
 attribute:
-  class: 'embed-responsive embed-responsive-16by9'
+  class: div:class
 innerHTML:
   -
     type: iframe

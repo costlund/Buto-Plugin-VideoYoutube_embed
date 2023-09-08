@@ -1,6 +1,7 @@
 <?php
 class PluginVideoYoutube_embed{
   private $attribute = null;
+  private $div_attribute = null;
   function __construct()
   {
     /**
@@ -9,7 +10,7 @@ class PluginVideoYoutube_embed{
     wfPlugin::includeonce('wf/array');
     wfPlugin::includeonce('wf/yml');
     /**
-     * 
+     * attribute
      */
     $this->attribute = new PluginWfArray(array(
       'title' => 'Video',
@@ -20,6 +21,16 @@ class PluginVideoYoutube_embed{
       'id' => '',
       'class' => 'embed-responsive-item'
     ));
+    /**
+     * div_attribute
+     */
+    $this->div_attribute = new PluginWfArray(array(
+      'class' => 'embed-responsive embed-responsive-16by9'
+    ));
+    $user = wfUser::getSession();
+    if($user->get('plugin/twitter/bootstrap530v/include')){
+      $this->div_attribute->set('class', 'ratio ratio-16x9');
+    }
   }
   public function widget_embed($data){
     $data = new PluginWfArray($data);
@@ -56,6 +67,7 @@ class PluginVideoYoutube_embed{
     $this->attribute->set('name', $id);
     $this->attribute->set('src', 'https://www.youtube.com/embed/'.$id.'?autoplay=0&amp;enablejsapi=1&amp;wmode=opaque');
     $element->setByTag($this->attribute->get());
+    $element->setByTag($this->div_attribute->get(), 'div');
     return $element;
   }
 }
